@@ -4,7 +4,7 @@ class CreateEvents < ActiveRecord::Migration[7.1]
       t.string :title, null: false
       t.text :note
       t.string :type
-      t.string :category
+      t.integer :parent_id
       t.integer :position
 
       t.timestamps
