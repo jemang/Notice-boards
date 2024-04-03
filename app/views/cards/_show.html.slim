@@ -1,0 +1,19 @@
+- card ||= @card
+= turbo_frame_tag dom_id(card) do
+  .card.mb-2
+    .card-body
+      .d-flex.justify-content-between
+        h3.card-title.mb-1
+          = card.title
+        .dropstart
+          .dropdown-action[type="button" data-bs-toggle="dropdown" aria-expanded="false"]
+            svg.icon.icon-tabler.icons-tabler-outline.icon-tabler-pencil[xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"]
+              path[stroke="none" d="M0 0h24v24H0z" fill="none"]
+              path[d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"]
+              path[d="M13.5 6.5l4 4"]
+          ul.dropdown-menu.dropdown-menu-end
+            li = link_to "Edit", edit_card_path(card, board_id: @board), class: "dropdown-item"
+            li = link_to "Delete", card_path(card, board_id: @board), data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: "dropdown-item"
+
+      .small.card-text.text-wrap.text-muted
+        = card.note

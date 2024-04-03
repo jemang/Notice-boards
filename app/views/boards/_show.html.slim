@@ -1,5 +1,5 @@
 - board ||= @board
-.card.w-25.lists
+.card.w-25.lists.card-link-pop id=dom_id(board)
   .card-header.d-grid
     = turbo_frame_tag dom_id(board) do
       .d-flex.justify-content-between
@@ -16,25 +16,10 @@
             li = link_to "Delete", board_path(board), data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: "dropdown-item"
 
   .card-body
-    p.card-text.text-wrap
-      | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
-    p.card-text
-      small.text-muted
-        | Last updated 3 mins ago
-
-    .d-flex.justify-content-between
-      h5.card-title
-        | Card title
-      .btn-group.dropstart
-        button.btn.btn-secondary.dropdown-toggle[type="button" data-bs-toggle="dropdown" aria-expanded="false"]
-          |  Dropstart
-        ul.dropdown-menu
-          li
-            a.dropdown-item[href="#"]
-              | Menu item
-          li
-            a.dropdown-item[href="#"]
-              | Menu item
-          li
-            a.dropdown-item[href="#"]
-              | Menu item
+    = turbo_frame_tag "cards", src: cards_path(board_id: board)
+    = turbo_frame_tag "new_card" do
+      = link_to new_card_path(board_id: board), class: "text-muted links" do
+        .card.rounded-pill.card-link
+          .card-body
+            .text-center
+              | add new card

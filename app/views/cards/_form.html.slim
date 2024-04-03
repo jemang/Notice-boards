@@ -1,0 +1,14 @@
+.card.mb-2
+  .card-body
+    = simple_form_for(@card) do |f|
+      = f.error_notification
+      = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+      .form-inputs
+        = f.input :title, label: false, placeholder: "Title"
+        = f.input :note, label: false, placeholder: "Note"
+        = f.input :parent_id, as: :hidden, label: false, placeholder: "Note"
+
+      .form-actions.d-flex.justify-content-between
+        = f.button :submit
+        = link_to :close, :back, class: "btn btn-dark ms-2"
