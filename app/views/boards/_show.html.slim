@@ -1,0 +1,40 @@
+- board ||= @board
+.card.w-25.lists
+  .card-header.d-grid
+    = turbo_frame_tag dom_id(board) do
+      .d-flex.justify-content-between
+        h5.card-title
+            = board.title
+        .dropdown
+          .dropdown-action[type="button" data-bs-toggle="dropdown" aria-expanded="false"]
+            svg.icon.icon-tabler.icons-tabler-outline.icon-tabler-menu[xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"]
+              path[stroke="none" d="M0 0h24v24H0z" fill="none"]
+              path[d="M4 8l16 0"]
+              path[d="M4 16l16 0"]
+          ul.dropdown-menu.dropdown-menu-end
+            li = link_to "Edit", edit_board_path(board), class: "dropdown-item"
+            li = link_to "Delete", board_path(board), data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: "dropdown-item"
+
+  .card-body
+    p.card-text.text-wrap
+      | This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.
+    p.card-text
+      small.text-muted
+        | Last updated 3 mins ago
+
+    .d-flex.justify-content-between
+      h5.card-title
+        | Card title
+      .btn-group.dropstart
+        button.btn.btn-secondary.dropdown-toggle[type="button" data-bs-toggle="dropdown" aria-expanded="false"]
+          |  Dropstart
+        ul.dropdown-menu
+          li
+            a.dropdown-item[href="#"]
+              | Menu item
+          li
+            a.dropdown-item[href="#"]
+              | Menu item
+          li
+            a.dropdown-item[href="#"]
+              | Menu item
