@@ -1,0 +1,11 @@
+= turbo_frame_tag "events", target: "_top" do
+  p style="color: green" = notice
+
+  h1 Events
+
+  .row.row-cards
+    .col-md-3
+      = turbo_frame_tag "new_frame"
+    - @events.each do |event|
+      .col-md-3
+        == render "event", event: event
