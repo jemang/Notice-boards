@@ -11,7 +11,7 @@
               path[stroke="none" d="M0 0h24v24H0z" fill="none"]
               path[d="M4 8l16 0"]
               path[d="M4 16l16 0"]
-          ul.dropdown-menu.dropdown-menu-end
+          ul.dropdown-menu.dropdown-menu-end.dropdown-menu-demo.dropdown-menu-arrow
             li = link_to "Edit", edit_board_path(board), class: "dropdown-item"
             li = link_to "Delete", board_path(board), data: { turbo_confirm: "Are you sure?", turbo_method: :delete }, class: "dropdown-item"
 

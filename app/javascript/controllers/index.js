@@ -2,10 +2,15 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { Application } from "@hotwired/stimulus"
+import controllers from "./*_controller.js"
 
-import ApplicationController from "./application_controller"
-application.register("application", ApplicationController)
+const application = Application.start()
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+// Configure Stimulus development experience
+application.debug = false
+window.Stimulus   = application
+
+controllers.forEach((controller) => {
+  application.register(controller.name, controller.module.default)
+})
