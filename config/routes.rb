@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   root "boards#index"
 
   resources :events
-  resources :boards
+  resources :boards do
+    post :sort, on: :collection
+  end
   resources :cards
 end

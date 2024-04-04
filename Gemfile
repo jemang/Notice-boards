@@ -73,3 +73,4 @@ end
 gem "slim-rails"
 gem "simple_form"
 gem "responders"
+gem "acts_as_list"

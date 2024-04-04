@@ -1,4 +1,7 @@
-#boards.boards.gap-2.py-4
+#boards.boards.gap-2.py-4(
+  data-controller="sortable"
+  data-sortable-url="#{sort_boards_path}"
+)
   = turbo_frame_tag "new_frame"
   - @boards.each do |board|
     = render "show", board: board

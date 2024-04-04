@@ -1,9 +1,10 @@
 class BoardsController < ApplicationController
-  before_action :set_board, except: [:index, :new, :create]
+  protect_from_forgery except: :sort
+  before_action :set_board, except: [:index, :new, :create, :sort]
   # respond_to :turbo_stream, only: [:create]
 
   def index
-    @boards = Board.all
+    @boards = Board.order(position: :asc)
     respond_with(@boards)
   end
 
@@ -35,6 +36,13 @@ class BoardsController < ApplicationController
   def destroy
     @board.destroy
     redirect_to boards_path
+  end
+
+  def sort
+    if params[:item].present?
+      @board = Board.find_by(id: params.dig(:item, :send))
+      @board.insert_at(params.dig(:item, :position)&.to_i) if @board
+    end
   end
 
   private
