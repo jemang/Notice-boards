@@ -8,7 +8,9 @@
     "bootstrap": "^5.3.3",
     "esbuild": "^0.20.2",
     "esbuild-rails": "^1.0.7",
-    "sass": "^1.72.0"
+    "jquery": "^3.7.1",
+    "sass": "^1.72.0",
+    "sortablejs": "^1.15.2"
   },
   "scripts": {
     "build": "node esbuild.config.mjs",
