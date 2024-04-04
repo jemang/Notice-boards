@@ -1,6 +1,6 @@
 - card ||= @card
-= turbo_frame_tag dom_id(card) do
-  .card.mb-2
+= turbo_frame_tag dom_id(card), data: { id: card.id } do
+  .card.mb-2.handle.shared
     .card-body
       .d-flex.justify-content-between
         h3.card-title.mb-1

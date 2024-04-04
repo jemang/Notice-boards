@@ -7,6 +7,7 @@ export default class extends Controller {
     this.sortableUrl = this.data.get('url')
     this.sortableHandle = this.data.get('handle') || '.cursor-move'
     this.sortableDirection = this.data.get('direction') || 'vertical'
+    this.sortableGroup = this.data.get('group') || '.shared'
     this.sortable()
   }
 
@@ -17,14 +18,16 @@ export default class extends Controller {
       animation: 150,
       direction: 'vertical',
       handle: this.sortableHandle,
+      group: this.sortableGroup,
 
-      onUpdate: event => this._onUpdate(event)
-      // onChange: (event) => this._onChange(event)
+      onUpdate: event => this._onUpdate(event),
+      onChange: (event) => this._onChange(event)
     })
   }
 
   _onChange(event) {
     console.log('sortable changed')
+    console.log('coming soon')
   }
 
   _onUpdate(event) {

@@ -1,9 +1,10 @@
 class CardsController < ApplicationController
-  before_action :set_card, except: [:index, :new, :create]
-  before_action :set_board
+  protect_from_forgery except: :sort
+  before_action :set_card, except: [:index, :new, :create, :sort]
+  before_action :set_board, except: :sort
 
   def index
-    @cards = Card.where(parent_id: @board.id)
+    @cards = Card.where(parent_id: @board.id).order(position: :asc)
     respond_with(@cards)
   end
 
@@ -36,6 +37,14 @@ class CardsController < ApplicationController
   def destroy
     @card.destroy
     redirect_to boards_path
+  end
+
+  def sort
+    if params[:item].present?
+      position = params.dig(:item, :position)&.to_i
+      @card = Card.find_by(id: params.dig(:item, :send))
+      @card.insert_at(position + 1) if @card
+    end
   end
 
   private

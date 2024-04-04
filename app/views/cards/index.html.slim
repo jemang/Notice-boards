@@ -1,3 +1,4 @@
 = turbo_frame_tag "cards" do
-  - @cards.each do |card|
-    = render "show", card: card
+  div data-controller="sortable" data-sortable-url=sort_cards_path data-sortable-handle=".handle"
+    - @cards.each do |card|
+      = render "show", card: card

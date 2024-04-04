@@ -8,9 +8,11 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "boards#index"
 
-  resources :events
+  # resources :events
   resources :boards do
     post :sort, on: :collection
   end
-  resources :cards
+  resources :cards do
+    post :sort, on: :collection
+  end
 end
