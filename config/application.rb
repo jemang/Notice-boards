@@ -28,6 +28,7 @@ module DemoApp
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Allowed all host by default
+    #routes.default_url_options = { host: ENV["DOMAIN"], protocol: :https }
     config.hosts.clear
   end
 end

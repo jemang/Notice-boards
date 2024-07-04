@@ -1,0 +1,43 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-${UID:-1000}}
+    ports:
+      - "3000:3000"
+    hostname: "notice-app"
+    env_file:
+      - ".env"
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  postgres-db:
+    image: "postgres:16.3"
+    hostname: "notice-postgresql"
+    environment:
+      PGUSER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: pg_isready
+      interval: 2s
+      timeout: 5s
+      retries: 30
+
+  redis:
+    image: redis
+    hostname: "notice-redis"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
+  pg_data:
