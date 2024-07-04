@@ -8,8 +8,8 @@ gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+# Use pg as the database for Active Record
+gem "pg", ">= 0.18", "< 2.0"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
@@ -74,3 +74,5 @@ gem "slim-rails"
 gem "simple_form"
 gem "responders"
 gem "acts_as_list"
+
+gem "dockerfile-rails", ">= 1.6", :group => :development
